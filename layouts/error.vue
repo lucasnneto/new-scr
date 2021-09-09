@@ -1,44 +1,30 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+  <v-app>
+    <v-main>
+      <div
+        :class="{ 'd-flex justify-center': $vuetify.breakpoint.width > 480 }"
+        :style="
+          $vuetify.breakpoint.width > 480
+            ? 'width: 100%; background-color: #fff; height: 100%'
+            : ''
+        "
+      >
+        <v-container
+          fluid
+          style="height: 90vh; max-width: 480px"
+          class="pa-6 d-flex flex-column"
+          overflow-y-hidden
+        >
+          <div
+            style="height: 100%"
+            class="d-flex flex-column align-center justify-center"
+          >
+            <h1>Erro 404</h1>
+            <img src="@/assets/error.svg" width="80px" class="my-6" />
+            <h3>Página não encontrada</h3>
+          </div>
+        </v-container>
+      </div>
+    </v-main>
   </v-app>
 </template>
-
-<script>
-export default {
-  layout: 'empty',
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
-  },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
-  }
-}
-</script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>

@@ -2,3 +2,191 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+$body-font-family: 'Roboto', sans-serif !important;
+$sources-font-family: 'Source Sans Pro', sans-serif !important;
+
+html,
+body {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+
+  background-color: var(--v-primary-base);
+}
+
+.v-application {
+  line-height: inherit;
+}
+
+.line-height-inherit span,
+.line-height-inherit p {
+  line-height: inherit !important;
+}
+
+.line-height-150 {
+  line-height: 1.5 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $sources-font-family;
+  color: var(--v-paragraph-darken4);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 32px;
+
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+.v-application .body-1,
+.v-application .body-2,
+.v-application .body-3,
+.v-application .body-4,
+.v-application .body-2-sm {
+  font-family: $body-font-family;
+  line-height: 1.5;
+}
+
+p {
+  color: var(--v-paragraph-darken4);
+  margin: 0 !important;
+  font-family: $sources-font-family;
+}
+
+.v-toast__item {
+  max-width: 400px;
+  text-align: justify;
+
+  padding: 0 8px;
+}
+
+.v-toast__text {
+  color: #fff;
+  font-family: $body-font-family;
+  font-weight: 600;
+  padding: 20px 10px;
+}
+
+span {
+  color: var(--v-paragraph-darken4);
+}
+
+a {
+  text-decoration: underline;
+  color: var(--v-paragraph-darken4);
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--v-paragraph-lighten2);
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--v-paragraph-lighten2);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--v-paragraph-lighten2);
+}
+
+.v-icon.v-icon.v-icon--link {
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.v-icon.v-icon.v-icon--link:hover {
+  color: var(--v-primary-darken1);
+  transform: scale(1.18);
+}
+
+.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+  border-color: var(--v-paragraph-lighten3);
+}
+
+.theme--light.v-input input,
+.theme--light.v-input textarea,
+.theme--light.v-select .v-select__selection--comma,
+.v-list-item .v-list-item__title,
+.v-list-item .v-list-item__subtitle {
+  color: var(--v-paragraph-base);
+}
+
+.v-application .special-0 {
+  font-size: 27px !important;
+}
+
+.v-application .body-0 {
+  font-size: 20px !important;
+}
+
+.v-application .body-1 {
+  font-size: 18px !important;
+}
+
+.v-application .body-2 {
+  font-size: 16px !important;
+}
+
+.v-application .body-2-sm {
+  font-size: 16px !important;
+}
+
+.v-application .body-3 {
+  font-size: 14px !important;
+}
+
+.v-application .body-4 {
+  font-size: 12px !important;
+}
+
+// @media (max-width: 960px) {
+//   h1 {
+//     font-size: 27px;
+//   }
+
+//   h2 {
+//     font-size: 24px;
+//   }
+
+//   h3 {
+//     font-size: 20px;
+//   }
+
+//   h4 {
+//     font-size: 18px;
+//   }
+
+//   h5 {
+//     font-size: 16px;
+//   }
+//
