@@ -1,4 +1,5 @@
-// import pt from 'vuetify/src/locale/pt'
+import { pt } from 'vuetify/src/locale'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 export default {
   theme: {
     options: {
@@ -32,10 +33,10 @@ export default {
       },
     },
   },
-  // lang: {
-  //   locales: { pt },
-  //   current: 'pt-br',
-  // },
+  lang: {
+    locales: { pt },
+    current: 'pt-br',
+  },
   icons: {
     iconfont: 'md',
   },

@@ -1,0 +1,68 @@
+{
+  // GET /assinar/:id
+  "clientData": {
+    "companyName": "Empresa Teste",
+    "companyTaxId": "48.901.880/0001-01",
+    "clientName": "Nome Teste",
+    "term": "Autorizo a Empresa acima, a consulta dos débitos e responsabilidades decorrentes de operações de crédito que constem ou venham a constar em meu nome e de minhas empresas, no Sistema de Informações de Crédito - SCR do Banco Central, através da Nagro Crédito Agro Ltda.",
+    "termId": "ID",
+    "questions": [
+      {
+        "id": "6E4od1DM9ECQp",
+        "question": "Qual o mês em que você nasceu?",
+        "answers": [
+          {
+            "1": 1
+          },
+          {
+            "2": 5
+          },
+          {
+            "3": 3
+          },
+          {
+            "4": 2
+          }
+        ]
+      }
+    ]
+  },
+  //PERGUNTA - POST /validar/resposta
+  "body": {
+    "termId": "ID",
+    "answers": [
+      {
+        "id": "ID",
+        "answer": {
+          "4": 2
+        }
+      }
+    ]
+  },
+  "message": "Refused | Acceppt",
+
+  //CPF - POST /validar/signatario
+  "body2": {
+    "signerTaxId": "CPF",
+    "termId": "ID"
+  },
+
+  //VALIDACAO - POST /assinar/token
+  "body3": {
+    "phone": "38999999999",
+    "termId": "ID"
+  },
+  "reenviar_codigo": "??",
+
+  //VALIDACAOCODIGO - POST /assinar/token/confirmar
+  "body4": {
+    "termId": "ID",
+    "otpToken": "1234",
+    "clientIp": "IP",
+    "geolocation": {
+      "latitude": "1",
+      "longitude": "1"
+    },
+    "deviceCode": "123"
+  }
+}
