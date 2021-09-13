@@ -13,11 +13,11 @@ import { mapActions } from 'vuex'
 export default Vue.extend({
   created() {
     const id: string = this.$route.params.id
-    this.CHANGE({ id })
-    this.$router.push('/autorizacao')
+    this.GET_DATA(id)
+    // this.$router.push('/autorizacao')
   },
   methods: {
-    ...mapActions(['CHANGE']),
+    ...mapActions(['GET_DATA', 'CHANGE']),
   },
 })
 </script>

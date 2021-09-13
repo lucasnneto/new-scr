@@ -1,6 +1,6 @@
 import { Context } from '@nuxt/types'
 export default function ({ store, error }: Context) {
-  if (!store.state.id) {
+  if (!store.state.termId) {
     return error({})
   }
 }

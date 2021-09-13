@@ -19,8 +19,12 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/persistedState.client.ts' }],
-
+  plugins: [{ src: '~/plugins/persistedState.ts' }],
+  storage: {
+    initialState: {
+      testParam: false,
+    },
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -30,12 +34,14 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
