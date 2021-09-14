@@ -29,9 +29,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapState } from 'vuex'
-import { maskCpfCnpj } from '../mixins/utils'
+import Vue from 'vue';
+import { mapState } from 'vuex';
+import { maskCpfCnpj } from '../mixins/utils';
 export default Vue.extend({
   layout: 'base',
   computed: {
@@ -42,17 +42,17 @@ export default Vue.extend({
       'term',
       'clientTaxId',
     ]),
-    slipTerm() {
-      return this.term.split('Sistema de Informações de Crédito - SCR')
+    slipTerm(): String[] {
+      return this.term.split('Sistema de Informações de Crédito - SCR');
     },
   },
   methods: {
     maskCpfCnpj,
     button() {
-      this.$router.push('/importante')
+      this.$router.push('/importante');
     },
   },
-})
+});
 </script>
 <style lang="scss" scoped>
 .justified {

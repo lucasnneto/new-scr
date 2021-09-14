@@ -73,8 +73,8 @@
   </card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
 export default Vue.extend({
   layout: 'base',
   data: () => ({
@@ -84,16 +84,16 @@ export default Vue.extend({
     ...mapGetters(['isLegalPerson']),
     isSafari() {
       if (process.client) {
-        return navigator.vendor.includes('Apple')
+        return navigator.vendor.includes('Apple');
       }
-      return false
+      return false;
     },
   },
   methods: {
     button() {
-      if (this.isLegalPerson) this.$router.push('/cpf')
-      else this.$router.push('/pergunta')
+      if (this.isLegalPerson) this.$router.push('/cpf');
+      else this.$router.push('/pergunta');
     },
   },
-})
+});
 </script>

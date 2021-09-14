@@ -1,5 +1,4 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex/types';
-import nuxt from 'nuxt';
 import ScrAPIService from '@/service';
 import { shuffle } from '@/mixins/utils';
 
@@ -68,8 +67,29 @@ export const actions: ActionTree<RootState, RootState> = {
       commit('CHANGE', {
         ...data,
       });
-      nuxt;
-      // this.$router.push('/autorizacao')
+      this.$router.push('/autorizacao');
+    }
+  },
+  async VALID_ANSWERS(
+    _,
+    payload: {
+      termId: string;
+      answers: {
+        id: string;
+        answer: Record<string, any>;
+      };
+    }
+  ): Promise<void> {
+    const scr = new ScrAPIService(this.$axios);
+    const [error, data] = await scr.validAnswers(payload);
+    if (error) {
+      console.error('ERROR: ', error);
+      // FIX JOGAR PARA TELA DE ERRO
+    } else if (data?.message === 'Refused') {
+      // TOAST Resposta incorreta
+      this.$router.push('/autorizacao');
+    } else {
+      this.$router.push('/validacao');
     }
   },
 };

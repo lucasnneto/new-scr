@@ -1,22 +1,20 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
-import { AxiosRequestConfig } from 'axios'
-import { RootState } from '@/store'
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { AxiosRequestConfig } from 'axios';
+import { RootState } from '@/store';
 
 export default class scrAPIService {
-  private url: string
-  private http: NuxtAxiosInstance
+  private http: NuxtAxiosInstance;
 
   constructor(axios: NuxtAxiosInstance) {
-    this.url = '/validar'
-    this.http = axios
+    this.http = axios;
   }
 
   private async axiosCall<T>(config: AxiosRequestConfig): Promise<any> {
     try {
-      const { data } = await this.http.request<T>(config)
-      return [null, data]
+      const { data } = await this.http.request<T>(config);
+      return [null, data];
     } catch (error) {
-      return [error]
+      return [error];
     }
   }
 
@@ -24,20 +22,20 @@ export default class scrAPIService {
     return await this.axiosCall<any>({
       method: 'get',
       url: `/assinar/${termId}`,
-    })
+    });
   }
 
   async validAnswers(body: {
-    termId: string
+    termId: string;
     answers: {
-      id: string
-      answer: Record<string, any>
-    }
+      id: string;
+      answer: Record<string, any>;
+    };
   }): Promise<[any, { message: string }?]> {
     return await this.axiosCall<any>({
       method: 'post',
-      url: `/${this.url}/respostas`,
+      url: `/validar/respostas`,
       data: body,
-    })
+    });
   }
 }
