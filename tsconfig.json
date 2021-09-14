@@ -15,13 +15,7 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": [
-      "@nuxt/types",
-      "@nuxtjs/axios",
-      "@types/node",
-      "vuetify",
-      "cookie-universal-nuxt"
-    ]
+    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "vuetify"]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

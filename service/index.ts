@@ -26,4 +26,18 @@ export default class scrAPIService {
       url: `/assinar/${termId}`,
     })
   }
+
+  async validAnswers(body: {
+    termId: string
+    answers: {
+      id: string
+      answer: Record<string, any>
+    }
+  }): Promise<[any, { message: string }?]> {
+    return await this.axiosCall<any>({
+      method: 'post',
+      url: `/${this.url}/respostas`,
+      data: body,
+    })
+  }
 }

@@ -5,7 +5,7 @@
       <p class="text body-2 mt-7 pb-9">
         Para realizar a autorização, você deverá seguir alguns passos:
       </p>
-      <div class="d-flex align-center mb-7">
+      <div v-if="!isLegalPerson" class="d-flex align-center mb-7">
         <div
           class="
             primary
@@ -38,7 +38,7 @@
           "
           style="height: 34px; min-width: 34px"
         >
-          <span class="white--text body-2">2</span>
+          <span class="white--text body-2">{{ !isLegalPerson ? 2 : 1 }}</span>
         </div>
         <p class="body-2">
           Inserir um
@@ -48,18 +48,21 @@
       </div>
       <p class="body-2">
         Lembre-se de
-        <span class="font-weight-bold red--text">
+        <span
+          class="font-weight-bold"
+          :class="{ 'red--text': !locationEnable }"
+        >
           permitir o acesso à sua localização,
         </span>
         pois este passo é necessário para realizar a autorização.
       </p>
 
-      <p class="mt-2 body-2 font-weight-bold red--text">
+      <p v-if="!locationEnable" class="mt-2 body-2 font-weight-bold red--text">
         Caso não consiga liberar sua localização favor utilizar outro
         dispositivo.
       </p>
 
-      <p class="mt-4 body-2">
+      <p v-if="isSafari" class="mt-4 body-2">
         Se estiver com problemas no Safari,
         <a href="https://support.apple.com/pt-br/HT207092" target="_blank"
           >clique aqui</a
@@ -71,11 +74,25 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 export default Vue.extend({
   layout: 'base',
+  data: () => ({
+    locationEnable: true,
+  }),
+  computed: {
+    ...mapGetters(['isLegalPerson']),
+    isSafari() {
+      if (process.client) {
+        return navigator.vendor.includes('Apple')
+      }
+      return false
+    },
+  },
   methods: {
     button() {
-      this.$router.push('/cpf')
+      if (this.isLegalPerson) this.$router.push('/cpf')
+      else this.$router.push('/pergunta')
     },
   },
 })

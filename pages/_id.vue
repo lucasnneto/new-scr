@@ -8,16 +8,15 @@
   </v-overlay>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { mapActions } from 'vuex'
+import Vue from 'vue';
+import { mapActions } from 'vuex';
 export default Vue.extend({
   created() {
-    const id: string = this.$route.params.id
-    this.GET_DATA(id)
-    // this.$router.push('/autorizacao')
+    const id: string = this.$route.params.id;
+    this.GET_DATA(id);
   },
   methods: {
     ...mapActions(['GET_DATA', 'CHANGE']),
   },
-})
+});
 </script>

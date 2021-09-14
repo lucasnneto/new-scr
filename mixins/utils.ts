@@ -46,3 +46,20 @@ export function checkField(object: any, fields?: string[]): boolean {
   }
   return !(typeof object === 'string' && object.trim().length === 0)
 }
+
+export function shuffle(array: Array<any>): Array<any> {
+  let instance = array.length
+  let auxValue
+  let indexRand
+
+  while (instance !== 0) {
+    indexRand = Math.floor(Math.random() * instance)
+    instance -= 1
+
+    auxValue = array[instance]
+    array[instance] = array[indexRand]
+    array[indexRand] = auxValue
+  }
+
+  return array
+}
