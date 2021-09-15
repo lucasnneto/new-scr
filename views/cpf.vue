@@ -33,7 +33,7 @@ import Vue from 'vue';
 export default Vue.extend({
   methods: {
     button() {
-      console.log('next');
+      console.log('');
     },
   },
 });
