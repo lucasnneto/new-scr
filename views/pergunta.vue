@@ -5,7 +5,11 @@
         <h1 class="line-height">Questionário</h1>
         <contador v-model="countDown" />
       </div>
-      <questionario v-model="selected" :question="questions[index]" />
+      <questionario
+        v-model="selected"
+        v-if="questions[index]"
+        :question="questions[index]"
+      />
     </template>
     <template #button> Próxima </template>
   </card>
@@ -48,7 +52,7 @@ export default Vue.extend({
         if (this.answers.length < this.questions.length) {
           this.index += 1;
         } else {
-          this.VALID_ANSWERS(this.answers);
+          // this.VALID_ANSWERS(this.answers);
         }
       }
     },
