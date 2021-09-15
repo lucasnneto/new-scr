@@ -74,7 +74,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('screen');
 export default Vue.extend({
   data: () => ({
     locationEnable: true,
@@ -82,17 +83,14 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['isLegalPerson']),
     isSafari() {
-      if (process.client) {
-        return navigator.vendor.includes('Apple');
-      }
-      return false;
+      return navigator.vendor.includes('Apple');
     },
   },
   methods: {
     ...mapActions(['CHANGE']),
     button() {
       this.CHANGE({
-        step: this.isLegalPerson ? 'cpf' : 'pergunta',
+        name: this.isLegalPerson ? 'cpf' : 'pergunta',
       });
     },
   },

@@ -30,7 +30,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapState, mapActions } from 'vuex';
+
+import { mapState, createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('screen');
 import { maskCpfCnpj } from '../mixins/utils';
 export default Vue.extend({
   computed: {
@@ -50,7 +52,7 @@ export default Vue.extend({
     ...mapActions(['CHANGE']),
     button() {
       this.CHANGE({
-        step: 'importante',
+        name: 'importante',
       });
     },
   },

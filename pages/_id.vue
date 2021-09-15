@@ -7,21 +7,21 @@
     ></v-progress-circular>
   </v-overlay> -->
   <div>
-    <component :is="step" />
+    <component :is="name" />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, createNamespacedHelpers } from 'vuex';
+const { mapState } = createNamespacedHelpers('screen');
 export default Vue.extend({
   layout: 'base',
   created() {
-    // const id: string = this.$route.params.id;
-    // console.log(id);
-    // this.GET_DATA(id);
+    const id: string = this.$route.params.id;
+    this.GET_DATA(id);
   },
   computed: {
-    ...mapState(['step']),
+    ...mapState(['name']),
   },
   methods: {
     ...mapActions(['GET_DATA', 'CHANGE']),

@@ -1,5 +1,5 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex/types';
-import ScrAPIService from '@/service';
+import { SCR_API } from '@/service';
 import { shuffle } from '@/mixins/utils';
 
 type Question = {
@@ -59,9 +59,8 @@ export const actions: ActionTree<RootState, RootState> = {
   CHANGE({ commit }, payload: RootState) {
     commit('CHANGE', payload);
   },
-  async GET_DATA({ commit }, payload: string): Promise<void> {
-    const scr = new ScrAPIService(this.$axios);
-    const [error, data] = await scr.getSCRData(payload);
+  async GET_DATA({ commit, dispatch }, payload: string): Promise<void> {
+    const [error, data] = await SCR_API.getSCRData(payload);
     if (error) {
       console.error('ERROR: ', error);
       // FIX JOGAR PARA TELA DE ERRO
@@ -69,7 +68,9 @@ export const actions: ActionTree<RootState, RootState> = {
       commit('CHANGE', {
         ...data,
       });
-      this.$router.push('/autorizacao');
+      dispatch('screen/CHANGE', {
+        name: 'autorizacao',
+      });
     }
   },
   async VALID_ANSWERS(
@@ -82,8 +83,7 @@ export const actions: ActionTree<RootState, RootState> = {
       };
     }
   ): Promise<void> {
-    const scr = new ScrAPIService(this.$axios);
-    const [error, data] = await scr.validAnswers(payload);
+    const [error, data] = await SCR_API.validAnswers(payload);
     if (error) {
       console.error('ERROR: ', error);
       // FIX JOGAR PARA TELA DE ERRO

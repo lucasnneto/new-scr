@@ -1,17 +1,11 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { AxiosRequestConfig } from 'axios';
+import http from './axios';
 import { RootState } from '@/store';
 
-export default class scrAPIService {
-  private http: NuxtAxiosInstance;
-
-  constructor(axios: NuxtAxiosInstance) {
-    this.http = axios;
-  }
-
+class scrAPIService {
   private async axiosCall<T>(config: AxiosRequestConfig): Promise<any> {
     try {
-      const { data } = await this.http.request<T>(config);
+      const { data } = await http.request<T>(config);
       return [null, data];
     } catch (error) {
       return [error];
@@ -39,3 +33,4 @@ export default class scrAPIService {
     });
   }
 }
+export const SCR_API = new scrAPIService();
