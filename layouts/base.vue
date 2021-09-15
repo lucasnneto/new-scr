@@ -10,14 +10,13 @@
   </v-app>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   layout: 'default',
-  middleware: 'auth',
   computed: {
     breakpoint(): Boolean {
-      return this.$vuetify.breakpoint.width > 480
+      return this.$vuetify.breakpoint.width > 480;
     },
   },
-})
+});
 </script>
