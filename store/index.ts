@@ -15,7 +15,6 @@ export type RootState = {
   clientTaxId: String;
   term: String;
   termId: String;
-  step: String;
 };
 export const state = () => ({
   questions: null,
@@ -25,7 +24,6 @@ export const state = () => ({
   clientTaxId: '',
   term: '',
   termId: '',
-  step: 'autorizacao',
 });
 export const getters: GetterTree<RootState, RootState> = {
   isLegalPerson: (state: RootState) => state.clientTaxId.length === 11,
@@ -74,7 +72,7 @@ export const actions: ActionTree<RootState, RootState> = {
     }
   },
   async VALID_ANSWERS(
-    _,
+    { dispatch },
     payload: {
       termId: string;
       answers: {
@@ -89,9 +87,13 @@ export const actions: ActionTree<RootState, RootState> = {
       // FIX JOGAR PARA TELA DE ERRO
     } else if (data?.message === 'Refused') {
       // TOAST Resposta incorreta
-      this.$router.push('/autorizacao');
+      dispatch('screen/CHANGE', {
+        name: 'autorizacao',
+      });
     } else {
-      this.$router.push('/validacao');
+      dispatch('screen/CHANGE', {
+        name: 'validacao',
+      });
     }
   },
 };

@@ -12,7 +12,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, createNamespacedHelpers } from 'vuex';
+const { mapActions: actionScreen } = createNamespacedHelpers('screen');
 export default Vue.extend({
   layout: 'base',
   data: () => ({
@@ -26,25 +27,29 @@ export default Vue.extend({
     ...mapGetters(['questions']),
   },
   created() {
-    if (!this.questions) this.$router.push('/validacao');
+    if (!this.questions) this.CHANGE({ name: 'validacao' });
   },
 
   methods: {
+    ...actionScreen(['CHANGE']),
     ...mapActions(['VALID_ANSWERS']),
     button(): void {
-      this.answers.push({
-        id: this.questions[this.index].id,
-        answer: {
-          [this.questions[this.index].answers[this.selected].key]:
-            this.questions[this.index].answers[this.selected].value,
-        },
-      });
-      this.selected = -1;
-      this.countDown = 45;
-      if (this.answers.length < this.questions.length) {
-        this.index += 1;
-      } else {
-        // this.VALID_ANSWERS(this.answers);
+      if (this.selected >= 0) {
+        this.answers.push({
+          id: this.questions[this.index].id,
+          answer: {
+            [this.questions[this.index].answers[this.selected].key]:
+              this.questions[this.index].answers[this.selected].value,
+          },
+        });
+        this.selected = -1;
+        this.countDown = 45;
+        console.log(this.questions);
+        if (this.answers.length < this.questions.length) {
+          this.index += 1;
+        } else {
+          this.VALID_ANSWERS(this.answers);
+        }
       }
     },
   },
