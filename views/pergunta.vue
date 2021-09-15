@@ -48,7 +48,6 @@ export default Vue.extend({
         });
         this.selected = -1;
         this.countDown = 45;
-        console.log(this.questions);
         if (this.answers.length < this.questions.length) {
           this.index += 1;
         } else {
