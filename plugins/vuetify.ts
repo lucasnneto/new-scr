@@ -1,5 +1,5 @@
-import { pt } from 'vuetify/src/locale'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import { pt } from 'vuetify/src/locale';
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 export default {
   theme: {
     options: {
@@ -40,4 +40,4 @@ export default {
   icons: {
     iconfont: 'md',
   },
-}
+};

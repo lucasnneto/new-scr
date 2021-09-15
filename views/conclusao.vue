@@ -13,8 +13,6 @@
   </card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  layout: 'base',
-})
+import Vue from 'vue';
+export default Vue.extend({});
 </script>

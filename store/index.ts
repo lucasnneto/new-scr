@@ -15,6 +15,7 @@ export type RootState = {
   clientTaxId: String;
   term: String;
   termId: String;
+  step: String;
 };
 export const state = () => ({
   questions: null,
@@ -24,6 +25,7 @@ export const state = () => ({
   clientTaxId: '',
   term: '',
   termId: '',
+  step: 'autorizacao',
 });
 export const getters: GetterTree<RootState, RootState> = {
   isLegalPerson: (state: RootState) => state.clientTaxId.length === 11,

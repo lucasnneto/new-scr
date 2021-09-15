@@ -2,7 +2,8 @@
 /* eslint-disable no-confusing-arrow */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-plusplus */
-import { removerMask } from './utils'
+import { removerMask } from './utils';
+import Vue from 'vue';
 
 export function validCpf(cpf: string) {
   if (
@@ -19,44 +20,44 @@ export function validCpf(cpf: string) {
     cpf === '88888888888' ||
     cpf === '99999999999'
   ) {
-    return false
+    return false;
   }
-  let soma = 0
-  let resto
+  let soma = 0;
+  let resto;
   for (let i = 1; i <= 9; i++) {
-    soma += parseInt(cpf.substring(i - 1, i), 10) * (11 - i)
+    soma += parseInt(cpf.substring(i - 1, i), 10) * (11 - i);
   }
-  resto = (soma * 10) % 11
+  resto = (soma * 10) % 11;
   if (resto === 10 || resto === 11) {
-    resto = 0
+    resto = 0;
   }
   if (resto !== parseInt(cpf.substring(9, 10), 10)) {
-    return false
+    return false;
   }
-  soma = 0
+  soma = 0;
   for (let i = 1; i <= 10; i++) {
-    soma += parseInt(cpf.substring(i - 1, i), 10) * (12 - i)
+    soma += parseInt(cpf.substring(i - 1, i), 10) * (12 - i);
   }
-  resto = (soma * 10) % 11
+  resto = (soma * 10) % 11;
   if (resto === 10 || resto === 11) {
-    resto = 0
+    resto = 0;
   }
   if (resto !== parseInt(cpf.substring(10, 11), 10)) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 export function validCnpj(cnpj: any) {
   // eslint-disable-next-line no-param-reassign
-  cnpj = cnpj.replace(/[^\d]+/g, '')
+  cnpj = cnpj.replace(/[^\d]+/g, '');
 
   if (cnpj === '') {
-    return false
+    return false;
   }
 
   if (cnpj.length !== 14) {
-    return false
+    return false;
   }
 
   if (
@@ -71,43 +72,43 @@ export function validCnpj(cnpj: any) {
     cnpj === '88888888888888' ||
     cnpj === '99999999999999'
   ) {
-    return false
+    return false;
   }
 
-  let tamanho = cnpj.length - 2
-  let numeros = cnpj.substring(0, tamanho)
-  const digitos = cnpj.substring(tamanho)
-  let soma = 0
-  let pos = tamanho - 7
+  let tamanho = cnpj.length - 2;
+  let numeros = cnpj.substring(0, tamanho);
+  const digitos = cnpj.substring(tamanho);
+  let soma = 0;
+  let pos = tamanho - 7;
   for (let i = tamanho; i >= 1; i -= 1) {
-    soma += numeros.charAt(tamanho - i) * pos--
+    soma += numeros.charAt(tamanho - i) * pos--;
     if (pos < 2) {
-      pos = 9
+      pos = 9;
     }
   }
-  let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
+  let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
   if (Number(resultado) !== Number(digitos.charAt(0))) {
-    return false
+    return false;
   }
-  tamanho += 1
-  numeros = cnpj.substring(0, tamanho)
-  soma = 0
-  pos = tamanho - 7
+  tamanho += 1;
+  numeros = cnpj.substring(0, tamanho);
+  soma = 0;
+  pos = tamanho - 7;
   for (let i = tamanho; i >= 1; i--) {
-    soma += numeros.charAt(tamanho - i) * pos--
+    soma += numeros.charAt(tamanho - i) * pos--;
     if (pos < 2) {
-      pos = 9
+      pos = 9;
     }
   }
-  resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
+  resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
   if (Number(resultado) !== Number(digitos.charAt(1))) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
-export default {
+export default Vue.extend({
   data() {
     return {
       rules: {
@@ -117,12 +118,12 @@ export default {
 
         email: (value: any) => {
           const pattern =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'E-mail inválido.'
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || 'E-mail inválido.';
         },
         celular: (value: any) => {
-          const pattern = /^\([1-9]{2}\)\s(9[1-9])[0-9]{3}\-[0-9]{4}$/
-          return pattern.test(value) || 'Celular inválido.'
+          const pattern = /^\([1-9]{2}\)\s(9[1-9])[0-9]{3}\-[0-9]{4}$/;
+          return pattern.test(value) || 'Celular inválido.';
         },
         cpfCnpj: (value: any) =>
           value
@@ -131,6 +132,6 @@ export default {
               : validCnpj(removerMask(value)) || 'CNPJ inválido.'
             : true,
       },
-    }
+    };
   },
-}
+});

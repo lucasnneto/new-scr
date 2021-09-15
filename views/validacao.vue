@@ -12,7 +12,10 @@
       <div class="d-flex flex-column justify-space-between">
         <v-form id="validacao" ref="Validacao">
           <v-text-field
+            v-if="selectType === 'phone'"
+            :rules="[rules.required, rules.celular]"
             class="input-txt"
+            v-mask="'(##) #####-####'"
             height="48px"
             color="primary darken-1"
             outlined
@@ -25,6 +28,8 @@
           </v-text-field>
 
           <v-text-field
+            v-else
+            :rules="[rules.required, rules.email]"
             class="input-txt"
             height="48px"
             color="primary darken-1"
@@ -40,13 +45,28 @@
   </card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  layout: 'base',
-  methods: {
-    button() {
-      this.$router.push('/validacaocodigo')
+import Vue, { VueConstructor } from 'vue';
+import rules from '@/mixins/rules';
+export default (Vue as VueConstructor<Vue & InstanceType<typeof rules>>).extend(
+  {
+    mixins: [rules],
+    layout: 'base',
+    data: () => ({
+      selectType: 'phone',
+    }),
+    methods: {
+      button(): void {
+        if (
+          !(
+            this.$refs.Validacao as Vue & {
+              validate: () => boolean;
+            }
+          ).validate()
+        ) {
+          return;
+        }
+      },
     },
-  },
-})
+  }
+);
 </script>

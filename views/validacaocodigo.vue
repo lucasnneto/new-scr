@@ -47,7 +47,7 @@
   </card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   layout: 'base',
   data: () => ({
@@ -55,10 +55,10 @@ export default Vue.extend({
   }),
   methods: {
     button() {
-      this.$router.push('/conclusao')
+      // this.$router.push('/conclusao')
     },
   },
-})
+});
 </script>
 <style scoped>
 .content {

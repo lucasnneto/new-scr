@@ -74,9 +74,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default Vue.extend({
-  layout: 'base',
   data: () => ({
     locationEnable: true,
   }),
@@ -90,9 +89,11 @@ export default Vue.extend({
     },
   },
   methods: {
+    ...mapActions(['CHANGE']),
     button() {
-      if (this.isLegalPerson) this.$router.push('/cpf');
-      else this.$router.push('/pergunta');
+      this.CHANGE({
+        step: this.isLegalPerson ? 'cpf' : 'pergunta',
+      });
     },
   },
 });

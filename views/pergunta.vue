@@ -44,7 +44,7 @@ export default Vue.extend({
       if (this.answers.length < this.questions.length) {
         this.index += 1;
       } else {
-        this.VALID_ANSWERS(this.answers);
+        // this.VALID_ANSWERS(this.answers);
       }
     },
   },

@@ -31,17 +31,17 @@
   </v-card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   props: {
     removeButton: Boolean,
   },
   methods: {
     previousCard() {
-      this.$router.back()
+      this.$router.back();
     },
   },
-})
+});
 </script>
 <style lang="scss" scoped>
 .card {

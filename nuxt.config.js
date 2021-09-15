@@ -1,4 +1,10 @@
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false,
+
+  // Target: https://go.nuxtjs.dev/config-target
+  target: 'static',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - scr-autorizacao',
@@ -19,14 +25,16 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/persistedState.ts' }],
+  plugins: [{ src: '~/plugins/persistedState.ts' }, '~/plugins/mask.ts'],
   storage: {
     initialState: {
       testParam: false,
     },
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    dirs: ['~/components', '~/views'],
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -57,4 +65,4 @@ export default {
   build: {
     transpile: [/vuetify/],
   },
-}
+};

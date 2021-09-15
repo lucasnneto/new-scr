@@ -29,13 +29,12 @@
   </card>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
-  layout: 'base',
   methods: {
     button() {
-      this.$router.push('/pergunta')
+      console.log('next');
     },
   },
-})
+});
 </script>

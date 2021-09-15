@@ -30,10 +30,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import { maskCpfCnpj } from '../mixins/utils';
 export default Vue.extend({
-  layout: 'base',
   computed: {
     ...mapState([
       'companyName',
@@ -48,8 +47,11 @@ export default Vue.extend({
   },
   methods: {
     maskCpfCnpj,
+    ...mapActions(['CHANGE']),
     button() {
-      this.$router.push('/importante');
+      this.CHANGE({
+        step: 'importante',
+      });
     },
   },
 });
