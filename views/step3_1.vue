@@ -30,10 +30,15 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('screen');
 export default Vue.extend({
   methods: {
+    ...mapActions(['CHANGE']),
     button() {
-      console.log('');
+      this.CHANGE({
+        name: 'step4',
+      });
     },
   },
 });

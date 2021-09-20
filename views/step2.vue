@@ -90,7 +90,7 @@ export default Vue.extend({
     ...mapActions(['CHANGE']),
     button() {
       this.CHANGE({
-        name: this.isLegalPerson ? 'cpf' : 'pergunta',
+        name: this.isLegalPerson ? 'step3_1' : 'step3_2',
       });
     },
   },

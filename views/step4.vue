@@ -47,6 +47,8 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue';
 import rules from '@/mixins/rules';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('screen');
 export default (Vue as VueConstructor<Vue & InstanceType<typeof rules>>).extend(
   {
     mixins: [rules],
@@ -55,6 +57,7 @@ export default (Vue as VueConstructor<Vue & InstanceType<typeof rules>>).extend(
       selectType: 'phone',
     }),
     methods: {
+      ...mapActions(['CHANGE']),
       button(): void {
         if (
           !(
@@ -65,6 +68,9 @@ export default (Vue as VueConstructor<Vue & InstanceType<typeof rules>>).extend(
         ) {
           return;
         }
+        this.CHANGE({
+          name: 'step5',
+        });
       },
     },
   }

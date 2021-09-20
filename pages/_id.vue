@@ -26,5 +26,15 @@ export default Vue.extend({
   methods: {
     ...mapActions(['GET_DATA', 'CHANGE']),
   },
+  // watch: {
+  //   name(value) {
+  //     const page = Number(value.replace('step', '')) - 1;
+  //     if (page > 0) {
+  //       this.CHANGE({
+  //         lastPage: 'step' + page,
+  //       });
+  //     }
+  //   },
+  // },
 });
 </script>

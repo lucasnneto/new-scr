@@ -67,7 +67,7 @@ export const actions: ActionTree<RootState, RootState> = {
         ...data,
       });
       dispatch('screen/CHANGE', {
-        name: 'autorizacao',
+        name: 'step1',
       });
     }
   },
@@ -88,11 +88,28 @@ export const actions: ActionTree<RootState, RootState> = {
     } else if (data?.message === 'Refused') {
       // TOAST Resposta incorreta
       dispatch('screen/CHANGE', {
-        name: 'autorizacao',
+        name: 'step1',
       });
     } else {
       dispatch('screen/CHANGE', {
-        name: 'validacao',
+        name: 'step4',
+      });
+    }
+  },
+  async VALID_CPF(
+    { dispatch },
+    payload: {
+      termId: string;
+      signerTaxId: string;
+    }
+  ): Promise<void> {
+    const [error, data] = await SCR_API.validCPF(payload);
+    if (error) {
+      console.error('ERROR: ', error);
+      // FIX JOGAR PARA TELA DE ERRO
+    } else {
+      dispatch('screen/CHANGE', {
+        name: 'step4',
       });
     }
   },

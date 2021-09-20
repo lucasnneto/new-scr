@@ -52,7 +52,7 @@ export default Vue.extend({
     ...mapActions(['CHANGE']),
     button() {
       this.CHANGE({
-        name: 'importante',
+        name: 'step2',
       });
     },
   },

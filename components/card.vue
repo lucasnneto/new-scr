@@ -1,13 +1,5 @@
 <template>
-  <v-card
-    v-touch="{
-      left: previousCard,
-    }"
-    width="480px"
-    height="630px"
-    elevation="0"
-    class="card py-10 px-6"
-  >
+  <v-card width="480px" height="630px" elevation="0" class="card py-10 px-6">
     <div class="body">
       <h1 class="line-height pb-2">
         <slot name="title" />
@@ -32,14 +24,17 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions } = createNamespacedHelpers('screen');
 export default Vue.extend({
   props: {
     removeButton: Boolean,
   },
+  computed: {
+    ...mapState(['lastPage', 'name']),
+  },
   methods: {
-    previousCard() {
-      this.$router.back();
-    },
+    ...mapActions(['CHANGE']),
   },
 });
 </script>

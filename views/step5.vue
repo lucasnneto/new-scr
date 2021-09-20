@@ -48,14 +48,19 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('screen');
 export default Vue.extend({
   layout: 'base',
   data: () => ({
     codes: ['input_1', 'input_2', 'input_3', 'input_4'],
   }),
   methods: {
+    ...mapActions(['CHANGE']),
     button() {
-      // this.$router.push('/conclusao')
+      this.CHANGE({
+        name: 'step6',
+      });
     },
   },
 });

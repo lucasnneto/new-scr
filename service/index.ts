@@ -32,5 +32,15 @@ class scrAPIService {
       data: body,
     });
   }
+  async validCPF(body: {
+    termId: string;
+    signerTaxId: string;
+  }): Promise<[any, { message: string }?]> {
+    return await this.axiosCall<any>({
+      method: 'post',
+      url: `/validar/signatario`,
+      data: body,
+    });
+  }
 }
 export const SCR_API = new scrAPIService();
