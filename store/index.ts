@@ -96,14 +96,11 @@ export const actions: ActionTree<RootState, RootState> = {
       });
     }
   },
-  async VALID_CPF(
-    { dispatch },
-    payload: {
-      termId: string;
-      signerTaxId: string;
-    }
-  ): Promise<void> {
-    const [error, data] = await SCR_API.validCPF(payload);
+  async VALID_CPF({ dispatch, state }, payload: String): Promise<void> {
+    const [error, data] = await SCR_API.validCPF({
+      termId: state.termId,
+      signerTaxId: payload,
+    });
     if (error) {
       console.error('ERROR: ', error);
       // FIX JOGAR PARA TELA DE ERRO

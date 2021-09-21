@@ -33,12 +33,13 @@ import Vue from 'vue';
 import { createNamespacedHelpers } from 'vuex';
 const { mapActions } = createNamespacedHelpers('screen');
 export default Vue.extend({
+  data: () => ({
+    cpf: '',
+  }),
   methods: {
-    ...mapActions(['CHANGE']),
+    ...mapActions(['CHANGE', 'VALID_CPF']),
     button() {
-      this.CHANGE({
-        name: 'step4',
-      });
+      this.VALID_CPF(this.cpf);
     },
   },
 });

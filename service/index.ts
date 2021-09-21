@@ -33,8 +33,8 @@ class scrAPIService {
     });
   }
   async validCPF(body: {
-    termId: string;
-    signerTaxId: string;
+    termId: String;
+    signerTaxId: String;
   }): Promise<[any, { message: string }?]> {
     return await this.axiosCall<any>({
       method: 'post',
